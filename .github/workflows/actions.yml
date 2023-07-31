@@ -1,8 +1,8 @@
-name: post tag
+name: Select random tag and post it on Twitter
 
 on:
   schedule:
-    - cron: '32 */3 * * *' # Every 4 hours at minute **:15
+    - cron: '32 0,*/3 * * *' # Run every 3 hours at minute 32
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
     steps:
 
       - name: checkout repo content
-        uses: actions/checkout@v2 # checkout the repository content to github runner
+        uses: actions/checkout@v3 # Checkout the repo content so the runner can access the tags.py file
 
       - name: setup python
         uses: actions/setup-python@v4
@@ -22,7 +22,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: execute py script # post tag
+      - name: execute py script # Main.py program itself
         env:
           API_key: ${{ secrets.API_KEY }}
           API_key_secret: ${{ secrets.API_KEY_SECRET }}
