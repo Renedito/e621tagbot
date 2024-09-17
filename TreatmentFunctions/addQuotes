@@ -1,0 +1,18 @@
+def add_quotes_to_lines(input_file, output_file):
+    # Open the input file for reading
+    with open(input_file, 'r', encoding='utf-8') as infile:
+        lines = infile.readlines()
+
+    # Open the output file for writing
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        for line in lines:
+            # Strip any trailing newlines or spaces, add quotes around the line, and write to the output file
+            quoted_line = f'"{line.strip()}",\n'
+            outfile.write(quoted_line)
+
+if __name__ == "__main__":
+    # Example usage
+    input_file = 'sanitizedoutput.py'  # Path to the input text file
+    output_file = 'quotedtags.py'  # Path to the output text file
+    
+    add_quotes_to_lines(input_file, output_file)
