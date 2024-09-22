@@ -1,0 +1,45 @@
+import csv
+
+def remove_zero_post_count_category(input_file, output_file, column_name1='post_count', column_name2='category'):
+    # Open the input CSV file
+    with open(input_file, mode='r', newline='', encoding='utf-8') as infile:
+        reader = csv.DictReader(infile)
+        
+        # Extract the header from the input CSV file
+        headers = reader.fieldnames
+        
+        # Check if the 'post_count' column exists
+        if column_name1 not in headers:
+            print(f"Column '{column_name1}' not found in the CSV file.")
+            return
+        
+        # Open the output CSV file for writing the filtered rows
+        with open(output_file, mode='w', newline='', encoding='utf-8') as outfile:
+            writer = csv.DictWriter(outfile, fieldnames=headers)
+            
+            # Write the header to the output CSV
+            writer.writeheader()
+            
+            # Iterate over the rows and write only rows where post_count is not 0
+            for row in reader:
+                if (int(row[column_name2]) == 0) and (int(row[column_name1]) > 70):          # GENERAL THRESHOLD: 70 posts
+                    writer.writerow(row)
+                if (int(row[column_name2]) == 1) and (int(row[column_name1]) > 150):          # ARTIST THRESHOLD: 50 posts
+                    writer.writerow(row)
+                if (int(row[column_name1]) > 50) and (int(row[column_name2]) == 8):          # LORE THRESHOLD: 50 posts  (lore is 2 and 8)
+                    writer.writerow(row)
+                if (int(row[column_name1]) > 55) and (int(row[column_name2]) == 3):          # COPYRIGHT THRESHOLD: 50 posts
+                    writer.writerow(row)
+                if (int(row[column_name1]) > 150) and (int(row[column_name2]) == 4):         # CHARACTER THRESHOLD: 50 posts
+                    writer.writerow(row)
+                if (int(row[column_name1]) > 60) and (int(row[column_name2]) == 5):          # SPECIES THRESHOLD: 50 posts
+                    writer.writerow(row)
+                if (int(row[column_name1]) > 19) and (int(row[column_name2]) == 7):          # META THRESHOLD: 50 posts
+                    writer.writerow(row)
+
+if __name__ == "__main__":
+    # Example usage
+    input_file = 'tags-2024-09-21.csv'  # Path to the input CSV file
+    output_file = 'output.csv'  # Path to the output CSV file
+    
+    remove_zero_post_count_category(input_file, output_file)

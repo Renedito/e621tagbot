@@ -25,7 +25,7 @@ def remove_columns(input_file, output_file, columns_to_remove):
 if __name__ == "__main__":
     # Example usage
     input_csv = 'output.csv'  # Path to the input CSV file
-    output_csv = 'newoutput.csv'  # Path to the output CSV file
+    output_csv = 'newoutput.py'  # Path to the output CSV file
     columns_to_remove = ['id', 'category', 'post_count']  # List of columns to remove
 
     remove_columns(input_csv, output_csv, columns_to_remove)

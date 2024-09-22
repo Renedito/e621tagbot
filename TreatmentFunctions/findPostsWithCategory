@@ -1,0 +1,33 @@
+import csv
+
+def find_category(input_file, output_file, column_name='category'):
+    # Open the input CSV file
+    with open(input_file, mode='r', newline='', encoding='utf-8') as infile:
+        reader = csv.DictReader(infile)
+        
+        # Extract the header from the input CSV file
+        headers = reader.fieldnames
+        
+        # Check if the 'post_count' column exists
+        if column_name not in headers:
+            print(f"Column '{column_name}' not found in the CSV file.")
+            return
+        
+        # Open the output CSV file for writing the filtered rows
+        with open(output_file, mode='w', newline='', encoding='utf-8') as outfile:
+            writer = csv.DictWriter(outfile, fieldnames=headers)
+            
+            # Write the header to the output CSV
+            writer.writeheader()
+            
+            # Iterate over the rows and write only rows where post_count is not 0
+            for row in reader:
+                if int(row[column_name]) == 8:
+                    writer.writerow(row)
+
+if __name__ == "__main__":
+    # Example usage
+    input_file = 'tags-2024-09-21.csv'  # Path to the input CSV file
+    output_file = 'output.csv'  # Path to the output CSV file
+    
+    find_category(input_file, output_file)
