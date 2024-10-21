@@ -1,6 +1,15 @@
 name: Select random tag and post it on Twitter
 
 on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - debug
   schedule:
     - cron: '32 0,*/3 * * *' # Run every 3 hours at minute 32
 
