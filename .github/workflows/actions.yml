@@ -29,4 +29,6 @@ jobs:
           Bearer_token: ${{ secrets.BEARER_TOKEN }}
           Access_Token: ${{ secrets.ACCESS_TOKEN }}
           Access_Token_Secret: ${{ secrets.ACCESS_TOKEN_SECRET }}
+          BSKY_HANDLE: ${{secrets.BSKY_HANDLE}}
+          BSKY_PASSWORD: ${{secrets.BSKY_PASSWORD}}
         run: python main.py
