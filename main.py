@@ -11,9 +11,9 @@ try:
         bearer_token = os.environ["Bearer_token"],
         access_token = os.environ["Access_Token"],
         access_token_secret = os.environ["Access_Token_Secret"]
+        ) 
     clientBsky = Client()
-    clientBsky.login(os.environ["BSKY_HANDLE"], os.environ["BSKY_PASSWORD"])        
-) 
+    clientBsky.login(os.environ["BSKY_HANDLE"], os.environ["BSKY_PASSWORD"])   
 except KeyError:
     print("Keys not available!") # DEBUG line to test if Actions can access the environment keys on Github
 
