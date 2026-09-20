@@ -3,7 +3,7 @@ name: Select random tag and post it on Twitter
 on:
   workflow_dispatch:
   schedule:
-    - cron: '32 */4 * * *' # Run every 4 hours at minute 32
+    - cron: '32 */3 * * *' # Run every 4 hours at minute 32
 
 permissions:
   contents: read
